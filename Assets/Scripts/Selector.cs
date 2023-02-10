@@ -32,16 +32,20 @@ public class Selector : MonoBehaviour
 
         //create the plane, ray and out distance
         Plane plane = new Plane(Vector3.up, Vector3.zero);  
+        // TODO: Aqui hay un Ray y en buildingPlacement hay otro Ray
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        float rayOut = 0.0f;
-
-        if (plane.Raycast(ray, out rayOut))
+        //float rayOut = 0.0f;
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
         {
             //get the position at which we intersected the plane
-            Vector3 newPos = ray.GetPoint(rayOut) - new Vector3(0.5f, 0.0f, 0.5f);
+            Vector3 newPos = hit.point - new Vector3(0.5f, 0.0f, 0.5f);
 
+            /*print("Original " + newPos.x + " + " + newPos.z);
+            print("CeilToInt " + Mathf.CeilToInt(newPos.x) + " + " + Mathf.CeilToInt(newPos.z));
+            print("FloorToInt " + Mathf.FloorToInt(newPos.x) + " + " + Mathf.FloorToInt(newPos.z));*/
             //round that up to the nearest full number (nearest meter)
-            newPos = new Vector3(Mathf.CeilToInt(newPos.x),0f, Mathf.CeilToInt(newPos.z));
+            newPos = new Vector3(Mathf.CeilToInt(newPos.x),1f, Mathf.CeilToInt(newPos.z));
 
             return newPos;
         }

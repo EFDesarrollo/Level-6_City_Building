@@ -16,6 +16,8 @@ public class BuildingPlacement : MonoBehaviour
 
     public GameObject placementIndicator;
     public GameObject bulldozeIndicator;
+    public LayerMask groundLayer;
+    private bool isOnLayer;
 
 
     //called when we press a building UI button
@@ -47,6 +49,15 @@ public class BuildingPlacement : MonoBehaviour
 
     private void Update()
     {
+        /// void ray that will contain RayCast's Values
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        bool rayCollision = Physics.Raycast(ray, out hit, 100);
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            isOnLayer = true;
+        else
+            isOnLayer = false;
+
         //cancel building placement
         if(Input.GetKeyDown(KeyCode.Escape))
             CancelBuildingPlacement();
@@ -60,21 +71,29 @@ public class BuildingPlacement : MonoBehaviour
             curIndicatorPos = Selector.instance.GetCurTilePosition();
 
             //move the placement indicator or bulldoze indicator to the selected tile
-            if (currentlyPlacing)
+            if (currentlyPlacing && isOnLayer)
                 placementIndicator.transform.position = curIndicatorPos;
             else if(currentlyBulldozering)
                 bulldozeIndicator.transform.position = curIndicatorPos;
         }
 
-        //called when we press left mouse button
-        if (Input.GetMouseButtonDown(0) && currentlyPlacing)
+        if (hit.collider == null)
+            print("hit collider null");
+        /*else
+            print(hit.collider.gameObject.layer + " =? " + LayerMask.NameToLayer("Ground"));*/
+        if (isOnLayer)
         {
-            Vector3 dummyPos = new Vector3(0, -99, 9);
-            //if (buildingObj.transform.position != dummyPos)
-                PlaceBuilding();
+            print("Enable build");
+            //called when we press left mouse button
+            if (Input.GetMouseButtonDown(0) && currentlyPlacing)
+            {
+                Vector3 dummyPos = new Vector3(0, -99, 9);
+                //if (buildingObj.transform.position != dummyPos)
+                    PlaceBuilding();
+            }
+            else if (Input.GetMouseButtonDown(0) && currentlyBulldozering)
+                Bulldoze();
         }
-        else if (Input.GetMouseButtonDown(0) && currentlyBulldozering)
-            Bulldoze();
     }
 
     //deletes the currently selected building
@@ -97,5 +116,14 @@ public class BuildingPlacement : MonoBehaviour
 
         if (!curBuildingPreset.prefab.tag.Equals("Road"))
             CancelBuildingPlacement();
+    }
+    private void OnDrawGizmos()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawRay(ray.origin,ray.direction * 100);
     }
 }

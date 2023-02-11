@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9f4c1e9f9d424747bc6bd086abd7c91, type: 3}
-  m_Name: FarmBarnPreset
+  m_Script: {fileID: 11500000, guid: a58f07604ff0c1249b2fd9b1a0b2dbfa, type: 3}
+  m_Name: Sawmill
   m_EditorClassIdentifier: 
-  costPerTurn: 10
-  maxCostPerTurn: 10
-  prefab: {fileID: 8890978050573029766, guid: 95b8ed0291486d0479d169121269fc45, type: 3}
+  cost: 5
+  costPerTurn: 5
+  prefab: {fileID: 575486921935136612, guid: 443c61a06aeeb95409acb059d03e80ad, type: 3}
   population: 5
   jobs: 0
-  food: 10
+  food: 5

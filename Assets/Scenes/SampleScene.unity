@@ -737,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1343597003809089650, guid: 34b1fc6cdae2493448777a1985b33e21, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1343597003809089651, guid: 34b1fc6cdae2493448777a1985b33e21, type: 3}
       propertyPath: m_RootOrder
@@ -1657,20 +1657,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileSize: 7
-  alingPositionOnY: 0
+  vertical_alignment_position: 0
   biomes:
-  - tilePrefab: {fileID: 2436196232533543900, guid: 142481de93b8f0642a72e0d60a39516d, type: 3}
-    probability: 30
-  - tilePrefab: {fileID: 787471487218581916, guid: 17b9771c5f9c7e24ebf879bacb238f03, type: 3}
-    probability: 20
-  - tilePrefab: {fileID: 5013338435811596921, guid: 86cbc74dbf3c2d14eb62f4baa7704633, type: 3}
-    probability: 80
-  GroundTiles:
-  - {fileID: 1343597003809089650, guid: 34b1fc6cdae2493448777a1985b33e21, type: 3}
-  Objects:
-  - {fileID: 6368752553597593919, guid: 949119f6013a4b041a94a9e8308790ea, type: 3}
-  - {fileID: 6421940238711345500, guid: f2bcbc8c89f034b4b9e01a6d90566416, type: 3}
-  - {fileID: 4907263962883846844, guid: c5bd5a7dfa07fe84a91be6dd32791b20, type: 3}
+  - probability: 50
+    tilePrefab: {fileID: 5013338435811596921, guid: 86cbc74dbf3c2d14eb62f4baa7704633, type: 3}
+    resourcesPool:
+    - {fileID: 6368752553597593919, guid: 949119f6013a4b041a94a9e8308790ea, type: 3}
+    - {fileID: 6421940238711345500, guid: f2bcbc8c89f034b4b9e01a6d90566416, type: 3}
+    - {fileID: 4907263962883846844, guid: c5bd5a7dfa07fe84a91be6dd32791b20, type: 3}
+    - {fileID: 133993349771928377, guid: e84a47d738cdade47858a50ba368b0dd, type: 3}
+    resourcesRange:
+      maxResources: 6
+      minResources: 9
+  - probability: 30
+    tilePrefab: {fileID: 2436196232533543900, guid: 142481de93b8f0642a72e0d60a39516d, type: 3}
+    resourcesPool:
+    - {fileID: 5163042382204983612, guid: 962c1c1d9378b6d4fa6f734e114a8a31, type: 3}
+    - {fileID: 6241088827609770017, guid: 8b7cecaa13bf9e14eae6835e5956fbc4, type: 3}
+    - {fileID: 6467385178710340380, guid: d9e37f3537018904aa7b962fcd4891e5, type: 3}
+    - {fileID: 133993349771928377, guid: e84a47d738cdade47858a50ba368b0dd, type: 3}
+    resourcesRange:
+      maxResources: 4
+      minResources: 6
+  - probability: 20
+    tilePrefab: {fileID: 787471487218581916, guid: 17b9771c5f9c7e24ebf879bacb238f03, type: 3}
+    resourcesPool: []
+    resourcesRange:
+      maxResources: 0
+      minResources: 0
+  continue_Biome_Probability: 0.4
 --- !u!1001 &747964889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1813,7 +1828,7 @@ PrefabInstance:
     - target: {fileID: 113946323404421963, guid: 2a95223979f267247a67b0252dee655c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: e80e0bd536f5b8a4f9d96c6e8b508452, type: 2}
+      objectReference: {fileID: 11400000, guid: 46100d632eee39045aae1838cf787d63, type: 2}
     - target: {fileID: 113946323404421963, guid: 2a95223979f267247a67b0252dee655c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: BuilldingPreset, Assembly-CSharp
@@ -2104,63 +2119,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a95223979f267247a67b0252dee655c, type: 3}
---- !u!1001 &886534679
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
-      propertyPath: m_Name
-      value: sawmill_01
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 89c4e79c4b44bef48ac358d30aebe6ec, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,6 +3138,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbae87c3e7877a54b9be5528f0a5d858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biome:
+    probability: 0
+    tilePrefab: {fileID: 0}
+    resourcesPool: []
+    resourcesRange:
+      maxResources: 0
+      minResources: 0
   ButonPrefab: {fileID: 3772106354001745170, guid: 1e8ded9b2ccd7b2479addac395d33cc9, type: 3}
   ButtonParent: {fileID: 628491592}
   leftButtonPos: {x: -1.5, y: 0, z: 0}
@@ -3194,16 +3159,6 @@ MonoBehaviour:
   frontCollision: 0
   backCollision: 0
   gizmosSize: 0.2
-  randPositions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
 --- !u!4 &1741719266
 Transform:
   m_ObjectHideFlags: 0

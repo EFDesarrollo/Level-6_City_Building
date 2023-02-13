@@ -11,9 +11,7 @@ public class DisableInvisibleObjects : MonoBehaviour
     void Start()
     {
         if (camera == null)
-        {
             camera = Camera.main;
-        }
     }
 
     void Update()
@@ -23,13 +21,9 @@ public class DisableInvisibleObjects : MonoBehaviour
             if (!IsException(child.gameObject))
             {
                 if (!IsRendered(child.transform, camera))
-                {
-                    child.SetActive(false);
-                }
+                    child.GetComponent<Renderer>().enabled = false;
                 else
-                {
-                    child.SetActive(true);
-                }
+                    child.GetComponent<Renderer>().enabled = true;
             }
         }
     }
@@ -45,9 +39,7 @@ public class DisableInvisibleObjects : MonoBehaviour
         foreach (var exception in exceptionList)
         {
             if (exception == gameObject)
-            {
                 return true;
-            }
         }
         return false;
     }

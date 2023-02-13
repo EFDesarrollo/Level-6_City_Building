@@ -12,9 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58f07604ff0c1249b2fd9b1a0b2dbfa, type: 3}
   m_Name: Farm
   m_EditorClassIdentifier: 
-  cost: 10
-  costPerTurn: 5
-  prefab: {fileID: 8316594955835067497, guid: 9501a03d5cf023c47a7c8e83a9cea3bb, type: 3}
-  population: 0
-  jobs: 3
-  food: 20
+  presetName: FARM
+  Sprite: {fileID: 21300000, guid: b08f329abe1e83c4a8bb0030bc57d919, type: 3}
+  prefab: {fileID: 2286061683624916904, guid: 3efc9d3270df351448341d9def76dc23, type: 3}
+  buildingCosts:
+  - ResourceType: 0
+    CostUnits: 5
+    CostPerTurn: 0
+  - ResourceType: 4
+    CostUnits: 2
+    CostPerTurn: 0
+  - ResourceType: 5
+    CostUnits: 5
+    CostPerTurn: 2
+  - ResourceType: 1
+    CostUnits: 10
+    CostPerTurn: 2
+  - ResourceType: 6
+    CostUnits: 2
+    CostPerTurn: 0
+  addResources: []

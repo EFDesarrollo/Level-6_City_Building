@@ -8,7 +8,7 @@ public class BuildingPlacement : MonoBehaviour
     private bool currentlyPlacing;
     private bool currentlyBulldozering;
 
-    private BuilldingPreset curBuildingPreset;
+    private BuildingPreset curBuildingPreset;
 
     private float indicatorUpdateRate = 0.05f; //seconds
     private float lastUpdateTime;
@@ -17,13 +17,15 @@ public class BuildingPlacement : MonoBehaviour
     public GameObject placementIndicator;
     public GameObject bulldozeIndicator;
     public LayerMask groundLayer;
-    private bool isOnLayer;
+    private bool isOnGround, isOnBuilding;
 
-
+    #region UI Buttons
     //called when we press a building UI button
-    public void BeginNewBuildingPlacement(BuilldingPreset preset)
+    public void BeginNewBuildingPlacement(BuildingPreset preset)
     {
-        //TODO: make sure we have enough money
+        // make sure we have enough money
+        if (!City.instance.CheckEnougthResources(preset))
+            return;
 
         currentlyPlacing = true;
         curBuildingPreset = preset;
@@ -31,21 +33,27 @@ public class BuildingPlacement : MonoBehaviour
 
     }
 
+
+    // called when we press a building UI button, turn bulldoze on off
+    public void ToggleBulldoze()
+    {
+        currentlyBulldozering = !currentlyBulldozering;
+        bulldozeIndicator.SetActive(currentlyBulldozering);
+    }
+    #endregion
+
+    #region Keyboard
     //called when we place down a building or press Escape
     private void CancelBuildingPlacement()
     {
         
         currentlyPlacing = false;
         placementIndicator.SetActive(false);
+        bulldozeIndicator.SetActive(false);
+        currentlyBulldozering = false;
        
     }
-
-    //turn bulldoze on off
-    public void ToggleBulldoze()
-    {
-        currentlyBulldozering = !currentlyBulldozering;
-        bulldozeIndicator.SetActive(currentlyBulldozering);
-    }
+    #endregion
 
     private void Update()
     {
@@ -53,13 +61,11 @@ public class BuildingPlacement : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         bool rayCollision = Physics.Raycast(ray, out hit, 100);
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            isOnLayer = true;
-        else
-            isOnLayer = false;
+        isOnGround = hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground");
+        isOnBuilding = hit.collider != null && (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Building") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Resource"));
 
         //cancel building placement
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             CancelBuildingPlacement();
 
         //called every 0.05 seconds 
@@ -71,19 +77,14 @@ public class BuildingPlacement : MonoBehaviour
             curIndicatorPos = Selector.instance.GetCurTilePosition();
 
             //move the placement indicator or bulldoze indicator to the selected tile
-            if (currentlyPlacing && isOnLayer)
+            if (currentlyPlacing && isOnGround)
                 placementIndicator.transform.position = curIndicatorPos;
-            else if(currentlyBulldozering)
+            else if(currentlyBulldozering && isOnBuilding)
                 bulldozeIndicator.transform.position = curIndicatorPos;
         }
 
-        if (hit.collider == null)
-            print("hit collider null");
-        /*else
-            print(hit.collider.gameObject.layer + " =? " + LayerMask.NameToLayer("Ground"));*/
-        if (isOnLayer)
+        if (isOnGround || isOnBuilding)
         {
-            print("Enable build");
             //called when we press left mouse button
             if (Input.GetMouseButtonDown(0) && currentlyPlacing)
             {
@@ -110,12 +111,12 @@ public class BuildingPlacement : MonoBehaviour
     //places down the currently selected building
     private void PlaceBuilding()
     {
+        if (City.instance.CheckEnougthResources(curBuildingPreset) == false)
+            CancelBuildingPlacement();
+
         GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curIndicatorPos, Quaternion.identity);
 
         City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
-
-        if (!curBuildingPreset.prefab.tag.Equals("Road"))
-            CancelBuildingPlacement();
     }
     private void OnDrawGizmos()
     {

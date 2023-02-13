@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 4
-  fixedAmount: 80
   unlimitedAmount: 0
-  maxUnits: 0
+  maxUnits: 45
+  currentUnits: 45
 --- !u!1001 &4154196628453947820
 PrefabInstance:
   m_ObjectHideFlags: 0

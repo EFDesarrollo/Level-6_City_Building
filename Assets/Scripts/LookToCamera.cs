@@ -6,22 +6,21 @@ using static UnityEngine.GraphicsBuffer;
 
 public class LookToCamera : MonoBehaviour
 {
-    private GameObject MainCamera;
-    void Awake()
+    // Reference to the main camera transform component
+    private Transform MainCameraTransform;
+
+    private void Awake()
     {
-        MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        // Get the reference to the main camera transform component
+        MainCameraTransform = Camera.main.transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        var n = Camera.main.transform.position + transform.position; 
-        transform.rotation = Quaternion.LookRotation(-MainCamera.transform.position);
-        Debug.DrawLine(transform.position, Camera.main.transform.position, Color.red);
+        // Rotate the game object to face the main camera
+        transform.rotation = Quaternion.LookRotation(-MainCameraTransform.position + transform.position);
+
+        // Draw a debug line from the game object to the main camera to visualize the facing direction
+        Debug.DrawLine(transform.position, MainCameraTransform.position, Color.red);
     }
 }

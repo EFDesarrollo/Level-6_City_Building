@@ -58,6 +58,7 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         InstantiateTileButtons();
+        ButtonParent.transform.localScale = new Vector3(1 / transform.localScale.x, 1 / transform.localScale.y, 1 / transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -96,7 +97,7 @@ public class TileManager : MonoBehaviour
             // Setting the position and rotation of the button
             buttons[i].transform.SetLocalPositionAndRotation(buttonPositions[i], Quaternion.identity);
             // Setting the values for the TileButtonManager component on the button
-            buttons[i].GetComponent<TileButtonManager>().SetButtonValues(transform, directions[i]);
+            buttons[i].GetComponentInChildren<TileButtonManager>().SetButtonValues(transform, directions[i]);
             // Setting the name for the button
             buttons[i].gameObject.name = buttonNames[i];
         }

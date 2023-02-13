@@ -98,9 +98,11 @@ public class ProceduralTerrainGeneratorManager : MonoBehaviour
         for (int index = 0; index < numOfObjects; index++)
         {
             // Calculates a random position within the TileSize limits.
-            Vector3 randomPos = new Vector3(Random.Range(-TileSize / 2, TileSize / 2), vertical_alignment_position, Random.Range(-TileSize / 2, TileSize / 2));
-            // Instantiates a random object from the resources pool.
-            Instantiate(biome.resourcesPool[Random.Range(0, biome.resourcesPool.Count)], spawnCenter + randomPos + Vector3.up, Quaternion.identity);
+            Vector3 randomPos = new Vector3(Random.Range(-TileSize / 2, TileSize / 2), vertical_alignment_position, Random.Range(-TileSize / 2, TileSize / 2)) + Vector3.up;
+            // Check if there is no object in the designated position
+            if (!Physics.CheckSphere(randomPos, 0.1f))
+                // Instantiates a random object from the resources pool.
+                Instantiate(biome.resourcesPool[Random.Range(0, biome.resourcesPool.Count)], spawnCenter + randomPos, Quaternion.identity);
         }
     }
 }

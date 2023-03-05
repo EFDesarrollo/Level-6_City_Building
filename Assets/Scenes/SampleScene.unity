@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.000017033906, g: 0.000000025772884, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0039957035, g: 0.00021792635, b: 0.000000051515347, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1190,7 +1190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &739839055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,6 +1208,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isOnGround: 0
+  isOnBuilding: 0
 --- !u!114 &739839056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,7 +1416,7 @@ MonoBehaviour:
   buildingButtonPrefab: {fileID: 8624107387357328147, guid: 04d97c19e1062e94280e63d7ee2861b3, type: 3}
   labelPrefab: {fileID: 2851657605852783168, guid: cc94f488dddcb954cab2b189bb800e54, type: 3}
   labelParent: {fileID: 1358080801}
-  labelPosition: {x: 150, y: 500, z: 0}
+  labelPosition: {x: 0, y: 200, z: 0}
   currentTimeText: {fileID: 865608574}
   cycleSpeedText: {fileID: 543436241}
 --- !u!114 &739839062
@@ -1452,6 +1454,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 508221727, guid: 2a95223979f267247a67b0252dee655c, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508221727, guid: 2a95223979f267247a67b0252dee655c, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 941064132, guid: 2a95223979f267247a67b0252dee655c, type: 3}
@@ -1577,6 +1583,10 @@ PrefabInstance:
     - target: {fileID: 113946323574034884, guid: 2a95223979f267247a67b0252dee655c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 113946323574034886, guid: 2a95223979f267247a67b0252dee655c, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 113946323574034888, guid: 2a95223979f267247a67b0252dee655c, type: 3}
       propertyPath: m_Name
@@ -2309,6 +2319,10 @@ PrefabInstance:
     - target: {fileID: 5568599887042208718, guid: ceaaf1c72c53921479f5cbed0872d71e, type: 3}
       propertyPath: m_Name
       value: Example Army
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568599887042208718, guid: ceaaf1c72c53921479f5cbed0872d71e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceaaf1c72c53921479f5cbed0872d71e, type: 3}

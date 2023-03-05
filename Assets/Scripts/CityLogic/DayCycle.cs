@@ -79,9 +79,9 @@ public class DayCycle : MonoBehaviour
         cycleSpeed -= amount;
         cycleSpeed = (int)(cycleSpeed * 10);
         cycleSpeed = cycleSpeed / 10;
-        if (cycleSpeed < 0.1)
+        if (cycleSpeed < 0)
         {
-            cycleSpeed = 0.1f;
+            cycleSpeed = 0;
         }
     }
 }

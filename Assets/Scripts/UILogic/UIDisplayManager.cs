@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEngine;
-
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -134,7 +131,7 @@ public class UIDisplayManager : MonoBehaviour
     {
         label.SetActive(true);
         ShowCost(buildingButtons.ToList<Button>().FindInstanceID(button));
-        Vector3 targetPos = button.transform.localPosition + labelPosition;
+        Vector3 targetPos = button.transform.position + labelPosition;
         targetPos = labelParent.InverseTransformPoint(targetPos);
         StartCoroutine(MoveLabel(targetPos, 0.5f));
     }

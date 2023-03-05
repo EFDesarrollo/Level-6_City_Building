@@ -1,11 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
-using Unity.VisualScripting;
 using System.Linq;
-using UnityEditor.Presets;
 
 public class City : MonoBehaviour
 {

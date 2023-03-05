@@ -17,12 +17,14 @@ public class BuildingPlacement : MonoBehaviour
     public GameObject placementIndicator;
     public GameObject bulldozeIndicator;
     public LayerMask groundLayer;
+    [SerializeField]
     private bool isOnGround, isOnBuilding;
 
     #region UI Buttons
     //called when we press a building UI button
     public void BeginNewBuildingPlacement(BuildingPreset preset)
     {
+        CancelBuildingPlacement();
         // make sure we have enough money
         if (!City.instance.CheckEnougthResources(preset))
             return;
@@ -37,6 +39,7 @@ public class BuildingPlacement : MonoBehaviour
     // called when we press a building UI button, turn bulldoze on off
     public void ToggleBulldoze()
     {
+        CancelBuildingPlacement();
         currentlyBulldozering = !currentlyBulldozering;
         bulldozeIndicator.SetActive(currentlyBulldozering);
     }
@@ -83,7 +86,7 @@ public class BuildingPlacement : MonoBehaviour
                 bulldozeIndicator.transform.position = curIndicatorPos;
         }
 
-        if (isOnGround || isOnBuilding)
+        if ((isOnGround || isOnBuilding) && !GUI.changed)
         {
             //called when we press left mouse button
             if (Input.GetMouseButtonDown(0) && currentlyPlacing)
@@ -111,16 +114,14 @@ public class BuildingPlacement : MonoBehaviour
     //places down the currently selected building
     private void PlaceBuilding()
     {
-        if (City.instance.CheckEnougthResources(curBuildingPreset) == false)
-            CancelBuildingPlacement();
-
         GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curIndicatorPos, Quaternion.identity);
 
         City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
+
+        BeginNewBuildingPlacement(curBuildingPreset);
     }
     private void OnDrawGizmos()
     {
-        RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         Gizmos.color = Color.green;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -39,20 +38,20 @@ public class ResourcesRange
     public int maxResources, minResources;
 }
 
-[CustomPropertyDrawer(typeof(ResourcesRange))]
-public class TwoVariablesDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        float originalLabelWidth = EditorGUIUtility.labelWidth;
-        EditorGUIUtility.labelWidth = 50;
+//[CustomPropertyDrawer(typeof(ResourcesRange))]
+//public class TwoVariablesDrawer : PropertyDrawer
+//{
+//    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+//    {
+//        float originalLabelWidth = EditorGUIUtility.labelWidth;
+//        EditorGUIUtility.labelWidth = 50;
 
-        Rect var1Rect = new Rect(position.x, position.y, position.width / 2 - 5, position.height);
-        Rect var2Rect = new Rect(position.x + position.width / 2, position.y, position.width / 2 - 5, position.height);
+//        Rect var1Rect = new Rect(position.x, position.y, position.width / 2 - 5, position.height);
+//        Rect var2Rect = new Rect(position.x + position.width / 2, position.y, position.width / 2 - 5, position.height);
 
-        EditorGUI.PropertyField(var1Rect, property.FindPropertyRelative("maxResources"), new GUIContent("Max R"));
-        EditorGUI.PropertyField(var2Rect, property.FindPropertyRelative("minResources"), new GUIContent("Min R"));
+//        EditorGUI.PropertyField(var1Rect, property.FindPropertyRelative("maxResources"), new GUIContent("Max R"));
+//        EditorGUI.PropertyField(var2Rect, property.FindPropertyRelative("minResources"), new GUIContent("Min R"));
 
-        EditorGUIUtility.labelWidth = originalLabelWidth;
-    }
-}
+//        EditorGUIUtility.labelWidth = originalLabelWidth;
+//    }
+//}
